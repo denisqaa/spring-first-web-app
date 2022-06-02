@@ -1,19 +1,20 @@
 package ru.denisqaa.service;
 
+import ru.denisqaa.dto.UserDTO;
 import ru.denisqaa.model.User;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> getUsersByCount(int number);
+    List<UserDTO> getUsersByCount(int number);
 
-    List<User> getUsers();
+    List<UserDTO> getUsers();
 
-    User getById(int id);
+    UserDTO getById(int id);
 
-    void saveUser(User user);
+    void saveUser(UserDTO userDTO);
 
-    void updateUser(User user, int id);
+    void updateUser(UserDTO userDTO, int id);
 
     void delete(int id);
 }

@@ -3,6 +3,8 @@ package ru.denisqaa.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.denisqaa.dao.UserDao;
+import ru.denisqaa.dto.UserDTO;
+import ru.denisqaa.mappers.UserMapper;
 import ru.denisqaa.model.User;
 
 import javax.transaction.Transactional;
@@ -15,28 +17,28 @@ public class UserService implements ru.denisqaa.service.UserService {
     private final UserDao userDao;
 
     @Override
-    public List<User> getUsersByCount(int count) {
-        return userDao.getUsersByCount(count);
+    public List<UserDTO> getUsersByCount(int count) {
+        return UserMapper.INSTANCE.toDTO(userDao.getUsersByCount(count));
     }
 
     @Override
-    public List<User> getUsers() {
-        return userDao.getUsers();
+    public List<UserDTO> getUsers() {
+        return UserMapper.INSTANCE.toDTO(userDao.getUsers());
     }
 
     @Override
-    public User getById(int id) {
-        return userDao.getById(id);
+    public UserDTO getById(int id) {
+        return UserMapper.INSTANCE.toDTO(userDao.getById(id));
     }
 
     @Override
-    public void saveUser(User user) {
-        userDao.saveUser(user);
+    public void saveUser(UserDTO userDTO) {
+        userDao.saveUser(UserMapper.INSTANCE.toUser(userDTO));
     }
 
     @Override
-    public void updateUser(User user, int id) {
-        userDao.updateUser(user, id);
+    public void updateUser(UserDTO userDTO, int id) {
+        userDao.updateUser(UserMapper.INSTANCE.toUser(userDTO), id);
     }
 
     @Override
